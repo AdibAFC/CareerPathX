@@ -1,0 +1,306 @@
+package First;
+
+
+import AppPackage.AnimationClass;
+import careerpathx.ScrollBarCustom;
+import drawer.JobSeeker_info;
+import drawer.Overview;
+import drawer.Profile;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javaswingdev.drawer.Drawer;
+import javaswingdev.drawer.DrawerController;
+import javaswingdev.drawer.DrawerItem;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import static javax.swing.SwingConstants.HORIZONTAL;
+import javax.swing.UIManager;
+import menubar.FAQ;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+/**
+ *
+ * @author Hp
+ */
+public class Home extends javax.swing.JFrame {
+
+    /**
+     * Creates new form HomePage
+     */
+    AnimationClass ac = new AnimationClass();
+    private DrawerController drawer;
+
+    public Home() {
+        initComponents();
+        jScrollPane1.setVerticalScrollBar(new ScrollBarCustom());
+        jScrollPane1.setVerticalScrollBar(new ScrollBarCustom());
+        ScrollBarCustom sp = new ScrollBarCustom();
+        sp.setOrientation(HORIZONTAL);
+        jScrollPane1.setHorizontalScrollBar(sp);
+        slideshow();
+        DrawerItem childItem1 = new DrawerItem("JobSeeker");
+        DrawerItem childItem2 = new DrawerItem("Recruiter");
+
+        childItem1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Signup hpage = new Signup();
+                hpage.setVisible(true);
+                hpage.pack();
+                hpage.setLocationRelativeTo(null);
+                //Admin.adminEmail.setText(name);
+                dispose();
+            }
+        });
+        childItem2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Signup2 hpage = new Signup2();
+                hpage.setVisible(true);
+                hpage.pack();
+                hpage.setLocationRelativeTo(null);
+                dispose();
+            }
+        });
+
+        drawer = Drawer.newDrawer(this)
+                .leftDrawer(false)
+                .drawerWidth(300)
+                .headerHeight(200)
+                .header(new DrawerItem("Header").build())
+                .space(5)
+                .itemHeight(50)
+                .separator(2, new Color(175, 23, 25))
+                .background(new Color(183, 15, 25))
+                .addChild(childItem1.build())
+                .separator(2, new Color(175, 23, 25))
+                .background(new Color(183, 15, 25))
+                .addChild(childItem2.build())
+                .separator(2, new Color(175, 23, 25))
+                .background(new Color(183, 15, 25))
+                .build();
+    }
+
+    public void slideshow() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int nb = 0;
+                try {
+                    while (true) {
+                        switch (nb) {
+                            case 0:
+                                Thread.sleep(2000);
+                                ac.jLabelXLeft(0, -800, 12, 10, img1);
+                                ac.jLabelXLeft(800, 0, 12, 10, img2);
+                                ac.jLabelXLeft(1600, 800, 12, 10, img3);
+                                nb++;
+                            case 1:
+                                Thread.sleep(2000);
+                                ac.jLabelXLeft(-800, -1600, 12, 10, img1);
+                                ac.jLabelXLeft(0, -800, 12, 10, img2);
+                                ac.jLabelXLeft(800, 0, 12, 10, img3);
+                                nb++;
+                            case 2:
+                                Thread.sleep(2000);
+                                ac.jLabelXLeft(-1600, -800, 12, 10, img1);
+                                ac.jLabelXLeft(-800, 0, 12, 10, img2);
+                                ac.jLabelXLeft(0, 800, 12, 10, img3);
+                                nb++;
+                            case 3:
+                                Thread.sleep(2000);
+                                ac.jLabelXLeft(-800, 0, 12, 10, img1);
+                                ac.jLabelXLeft(0, 800, 12, 10, img2);
+                                ac.jLabelXLeft(800, 1600, 12, 10, img3);
+                                nb = 0;
+                        }
+                    }
+                } catch (Exception e) {
+
+                }
+            }
+
+        }).start();
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        img1 = new javax.swing.JLabel();
+        img2 = new javax.swing.JLabel();
+        img3 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/logo.png"))); // NOI18N
+
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton5.setText("Login");
+
+        jButton6.setBackground(new java.awt.Color(235, 16, 18));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Register");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 687, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 100));
+
+        jScrollPane1.setOpaque(false);
+
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel7.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel7.setPreferredSize(new java.awt.Dimension(800, 400));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        img1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/Contact Us.png"))); // NOI18N
+        jPanel7.add(img1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 400));
+
+        img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/Find Now.png"))); // NOI18N
+        jPanel7.add(img2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 800, 400));
+
+        img3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/We're Expert.png"))); // NOI18N
+        jPanel7.add(img3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1600, 0, 800, 400));
+
+        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, -1, -1));
+
+        jButton7.setText("jButton7");
+        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 140, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/home_bg.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1510, 900));
+
+        jScrollPane1.setViewportView(jPanel4);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-8, 102, 1530, 650));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 750));
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        if (drawer.isShow()) {
+            drawer.hide();
+        } else {
+            drawer.show();
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+// </editor-fold>                        
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Home().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel img1;
+    private javax.swing.JLabel img2;
+    private javax.swing.JLabel img3;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    // End of variables declaration//GEN-END:variables
+
+}
