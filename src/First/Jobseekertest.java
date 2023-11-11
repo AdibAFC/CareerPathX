@@ -4234,11 +4234,7 @@ public class Jobseekertest extends javax.swing.JFrame {
 
     private void jButton78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton78ActionPerformed
         // TODO add your handling code here:
-        Login loginframe = new Login();
-        loginframe.setVisible(true);
-        loginframe.pack();
-        loginframe.setLocationRelativeTo(null);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton78ActionPerformed
 
     private void jButton79ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton79ActionPerformed

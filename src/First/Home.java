@@ -3,9 +3,6 @@ package First;
 
 import AppPackage.AnimationClass;
 import careerpathx.ScrollBarCustom;
-import drawer.JobSeeker_info;
-import drawer.Overview;
-import drawer.Profile;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +17,8 @@ import javax.swing.JOptionPane;
 import static javax.swing.SwingConstants.HORIZONTAL;
 import javax.swing.UIManager;
 import menubar.FAQ;
+import opening.Signup;
+import opening.Signup2;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

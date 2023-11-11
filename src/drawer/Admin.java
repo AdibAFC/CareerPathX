@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import opening.Home;
+import opening.Homapage;
 import careerpathx.ScrollBarCustom;
 import dao.ImageIconCellRenderer;
 import javaswingdev.drawer.Drawer;
@@ -102,6 +102,7 @@ public class Admin extends javax.swing.JFrame {
         init();
         setTime();
         setNumbers();
+        overview.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane4.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane4.setVerticalScrollBar(new ScrollBarCustom());
         jScrollPane3.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -142,14 +143,12 @@ public class Admin extends javax.swing.JFrame {
         DrawerItem childItem2 = new DrawerItem("Profile");
         DrawerItem childItem3 = new DrawerItem("JobSeeker Info");
         DrawerItem childItem4 = new DrawerItem("Recruiter Info");
-        DrawerItem childItem5 = new DrawerItem("OverView");
         DrawerItem logout = new DrawerItem("Logout");
         Font itemFont = new Font("Roboto Medium", Font.PLAIN, 18);
         childItem1.setFont(itemFont);
         childItem2.setFont(itemFont);
         childItem3.setFont(itemFont);
         childItem4.setFont(itemFont);
-        childItem5.setFont(itemFont);
         logout.setFont(itemFont);
         childItem1.addActionListener(new ActionListener() {
             @Override
@@ -175,16 +174,10 @@ public class Admin extends javax.swing.JFrame {
                 jTabbedPane1.setSelectedIndex(3);
             }
         });
-        childItem5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jTabbedPane1.setSelectedIndex(4);
-            }
-        });
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Home h = new Home();
+                Homapage h = new Homapage();
                 h.setVisible(true);
                 dispose();
             }
@@ -208,9 +201,6 @@ public class Admin extends javax.swing.JFrame {
                 .separator(2, new Color(0, 0, 102))
                 .background(new Color(0, 0, 0))
                 .addChild(childItem4.icon(new ImageIcon(getClass().getResource("/Asset/icons8-information-48 (1).png"))).build())
-                .separator(2, new Color(0, 0, 102))
-                .background(new Color(0, 0, 0))
-                .addChild(childItem5.icon(new ImageIcon(getClass().getResource("/Asset/icons8-overview-48.png"))).build())
                 .separator(2, new Color(0, 0, 102))
                 .addFooter(logout.icon(new ImageIcon(getClass().getResource("/Asset/icons8-logout.gif"))).build())
                 .addFooter(new DrawerItem("").build())
@@ -469,6 +459,8 @@ public class Admin extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         profiletab = new javax.swing.JPanel();
         dp1 = new javax.swing.JLabel();
@@ -544,11 +536,6 @@ public class Admin extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtable1 = new rojeru_san.complementos.RSTableMetro();
         jLabel26 = new javax.swing.JLabel();
-        home = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -644,17 +631,17 @@ public class Admin extends javax.swing.JFrame {
         barchart.setBackground(new java.awt.Color(255, 255, 255));
         barchart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         barchart.setLayout(new java.awt.BorderLayout());
-        overviewtab.add(barchart, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 702, 500, 320));
+        overviewtab.add(barchart, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 500, 320));
 
         grph.setBackground(new java.awt.Color(255, 255, 255));
         grph.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         grph.setLayout(new java.awt.BorderLayout());
-        overviewtab.add(grph, new org.netbeans.lib.awtextra.AbsoluteConstraints(912, 702, 500, 320));
+        overviewtab.add(grph, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 470, 500, 320));
 
         pie.setBackground(new java.awt.Color(255, 255, 255));
         pie.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         pie.setLayout(new java.awt.BorderLayout());
-        overviewtab.add(pie, new org.netbeans.lib.awtextra.AbsoluteConstraints(514, 1034, 520, 320));
+        overviewtab.add(pie, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 820, 520, 320));
 
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -746,6 +733,31 @@ public class Admin extends javax.swing.JFrame {
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel34.setText("No of Jobs");
         overviewtab.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 150, 30));
+
+        jPanel8.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("© Copyright 2030 CareerPathX - All Rights Reserved");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(549, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(542, 542, 542))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel13)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
+        overviewtab.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1240, 1510, -1));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/overview.png"))); // NOI18N
         overviewtab.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -1219,25 +1231,6 @@ public class Admin extends javax.swing.JFrame {
         rec_infotab.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1490, 720));
 
         jTabbedPane1.addTab("tab3", rec_infotab);
-
-        home.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel7.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel7.setPreferredSize(new java.awt.Dimension(300, 770));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/admin_side.png"))); // NOI18N
-        jPanel7.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 710));
-
-        jLabel13.setText("jLabel13");
-        jPanel7.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1230, 710));
-
-        home.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 710));
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/admin_full.png"))); // NOI18N
-        home.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 710));
-
-        jTabbedPane1.addTab("tab1", home);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1500, 740));
 
@@ -1997,7 +1990,6 @@ public boolean infoValid() {
     private try__.TextField email2;
     private try__.TextField email3;
     private javax.swing.JPanel grph;
-    private javax.swing.JPanel home;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -2022,13 +2014,11 @@ public boolean infoValid() {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -2054,7 +2044,7 @@ public boolean infoValid() {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;

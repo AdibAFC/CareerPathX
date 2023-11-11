@@ -155,8 +155,9 @@ public class job_view extends javax.swing.JPanel {
         jLabel1.setText("jLabel1");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 200, 190));
     }// </editor-fold>//GEN-END:initComponents
-public static void getname(String Name) {
+    public static void getname(String Name) {
         name = Name;
+        System.out.println(name);
     }
     private void applyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyActionPerformed
         // TODO add your handling code here:
@@ -178,44 +179,32 @@ public static void getname(String Name) {
             // Handle the exception appropriately, e.g., show an error message to the user.
             ex.printStackTrace(); // This is a simple way to log the exception for debugging.
         }
-        jobseeker x = new jobseeker();
         Timestamp ada = new Timestamp(new Date().getTime());
         if (r_id == 0) {
             JOptionPane.showMessageDialog(this, name + ", We're extremely sorry,this job is not available! ", "Invalid", 2);
         } else {
             JOptionPane.showMessageDialog(this, name + ", your CV has been sent to Admin,you'll be informed soon");
-            Icon icon = x.cv.getIcon();
-            InputStream imgStream = null;
-            if (icon != null) {
-                BufferedImage bi = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
-                Graphics g = bi.createGraphics();
-                icon.paintIcon(null, g, 0, 0);
-                g.dispose();
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                try {
-                    ImageIO.write(bi, "png", baos);
-                } catch (IOException ex) {
 
-                }
-                imgStream = new ByteArrayInputStream(baos.toByteArray());
-            }
+            byte[] cvData = getcv(name);
+            InputStream imgStream = new ByteArrayInputStream(cvData);
             insert_in_adminaoo(r_id, ji.jobt, name, ada, imgStream);
         }
 
     }//GEN-LAST:event_applyActionPerformed
-    public String getemail(int r_id) {
+    public byte[] getcv(String name) {
         try {
-            ps = con.prepareStatement("select remail from recruiter where rid = ?");
-            ps.setInt(1, r_id);
+            ps = con.prepareStatement("select CV from jseeker where semail = ?");
+            ps.setString(1, name);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getString("remail");
+                return rs.getBytes("CV");
             }
         } catch (SQLException ex) {
             Logger.getLogger(jobseeker.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return " ";
+        return null;
     }
+
     public void insert_in_adminaoo(int rid, String jt, String aname, Timestamp adate, InputStream cv) {
         String sql;
         try {

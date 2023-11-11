@@ -6,8 +6,13 @@ package opening;
 
 import Connection.Myconnection;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +20,11 @@ import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import javax.swing.Timer;
+import menubar.Contact;
 import menubar.FAQ;
+import menubar.Helpline;
 
 /**
  *
@@ -26,11 +35,18 @@ public class Homapage extends javax.swing.JFrame {
     /**
      * Creates new form Homapage
      */
+    FAQ faqq = new FAQ();
+    Helpline hlp = new Helpline();
+    Contact cntct = new Contact();
     private DrawerController drawer;
 
     public Homapage() {
         initComponents();
+        createAndShowGUI();
         setNumbers();
+        Home.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        About_us.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         home.setBackground(new Color(39, 24, 126));
         home.setForeground(Color.white);
         about.setBackground(Color.white);
@@ -42,9 +58,24 @@ public class Homapage extends javax.swing.JFrame {
         helpline.setBackground(Color.white);
         helpline.setForeground(new Color(39, 24, 126));
 
+        close.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+            }
+        });
+        close.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent me) {
+                close.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+        });
+
         DrawerItem childItem1 = new DrawerItem("JobSeeker");
         DrawerItem childItem2 = new DrawerItem("Recruiter");
-
+        Font itemFont = new Font("Roboto Medium", Font.PLAIN, 18);
+        childItem1.setFont(itemFont);
+        childItem2.setFont(itemFont);
         childItem1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,14 +105,14 @@ public class Homapage extends javax.swing.JFrame {
                 .header(new DrawerItem("").icon(new ImageIcon(getClass().getResource("/Asset/java_dev.png"))).build())
                 .space(5)
                 .itemHeight(50)
-                .separator(2, new Color(175, 23, 25))
-                .background(new Color(51, 51, 51))
+                .separator(2, new Color(0, 0, 102))
+                .background(new Color(0,0,0))
                 .addChild(childItem1.build())
-                .separator(2, new Color(175, 23, 25))
-                .background(new Color(51, 51, 51))
+                .separator(2, new Color(0, 0, 102))
+                .background(new Color(0,0,0))
                 .addChild(childItem2.build())
-                .separator(2, new Color(175, 23, 25))
-                .background(new Color(51, 51, 51))
+                .separator(2, new Color(0, 0, 102))
+                .background(new Color(0,0,0))
                 .build();
     }
 
@@ -122,6 +153,40 @@ public class Homapage extends javax.swing.JFrame {
         }
 
     }
+    ImageIcon page1 = new ImageIcon(getClass().getResource("/Asset/page1.png"));
+    ImageIcon page2 = new ImageIcon(getClass().getResource("/Asset/page2.png"));
+    ImageIcon page3 = new ImageIcon(getClass().getResource("/Asset/page3.png"));
+    ImageIcon page4 = new ImageIcon(getClass().getResource("/Asset/page4.png"));
+    ImageIcon page5 = new ImageIcon(getClass().getResource("/Asset/page5.png"));
+    ImageIcon page6 = new ImageIcon(getClass().getResource("/Asset/page6.png"));
+    ImageIcon page7 = new ImageIcon(getClass().getResource("/Asset/page7.png"));
+    ImageIcon page8 = new ImageIcon(getClass().getResource("/Asset/page8.png"));
+    ImageIcon page9 = new ImageIcon(getClass().getResource("/Asset/page9.png"));
+    ImageIcon[] imagePaths = {page1, page2, page3};
+    ImageIcon[] imagePaths1 = {page4, page5, page6};
+    ImageIcon[] imagePaths2 = {page7, page8, page9};
+    int currentIndex = 0;
+
+    public void createAndShowGUI() {
+
+        int delay = 1000; // 2 seconds (in milliseconds)
+        Timer timer;
+        timer = new Timer(delay, (ActionEvent e) -> {
+            // Set the next icon from the array
+
+            jLabel3.setIcon(imagePaths[currentIndex]);
+            jLabel4.setIcon(imagePaths1[currentIndex]);
+            jLabel19.setIcon(imagePaths2[currentIndex]);
+
+            // Increment the index or loop back to the beginning
+            currentIndex = (currentIndex + 1) % imagePaths.length;
+        });
+
+        // Start the timer
+        timer.start();
+
+        //frame.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,6 +207,7 @@ public class Homapage extends javax.swing.JFrame {
         faq = new necesario.MaterialButton();
         helpline = new necesario.MaterialButton();
         jLabel14 = new javax.swing.JLabel();
+        close = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Home = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
@@ -204,9 +270,11 @@ public class Homapage extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         rSPanelCircleImage5 = new rojerusan.RSPanelCircleImage();
+        jLabel41 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(39, 24, 126));
@@ -267,6 +335,11 @@ public class Homapage extends javax.swing.JFrame {
         contact.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contactMouseClicked(evt);
+            }
+        });
+        contact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactActionPerformed(evt);
             }
         });
 
@@ -332,6 +405,11 @@ public class Homapage extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/CareerPathX.gif"))); // NOI18N
 
+        close.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        close.setForeground(new java.awt.Color(255, 255, 255));
+        close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        close.setText("X");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -343,22 +421,25 @@ public class Homapage extends javax.swing.JFrame {
                 .addComponent(materialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(36, 36, 36)
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(materialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(materialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -511,6 +592,7 @@ public class Homapage extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(246, 222, 222));
 
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/page10.png"))); // NOI18N
         jLabel40.setText("jLabel40");
         jLabel40.setOpaque(true);
 
@@ -524,7 +606,7 @@ public class Homapage extends javax.swing.JFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+            .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -558,25 +640,22 @@ public class Homapage extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(103, 103, 103))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel20))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
@@ -597,7 +676,12 @@ public class Homapage extends javax.swing.JFrame {
                                 .addComponent(jLabel23))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
-                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(54, 54, 54)
                 .addComponent(rSPanelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -614,7 +698,7 @@ public class Homapage extends javax.swing.JFrame {
 
         rSPanelImage1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/Asset/we are hiring!.png"))); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("<html><body style=\"font-family:'Roboto', 'Times New Roman', Times, serif;\">About Us</body></html>");
@@ -635,6 +719,8 @@ public class Homapage extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
+
+        jPanel7.setBackground(new java.awt.Color(170, 198, 252));
 
         roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
         roundedPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -916,20 +1002,30 @@ public class Homapage extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel7);
 
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 28)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel41.setText("<html>\n<body style=\"font-family: 'Roboto','Times New Roman', Times, serif\">\n    <p>Welcome to our dynamic online job portal, a one-stop destination for job seekers, recruiters, and guests. As a job seeker, you'll find a treasure trove of career opportunities, ranging from entry-level positions to executive roles, across a wide spectrum of industries. For recruiters and employers, our platform offers a seamless and efficient hiring process, enabling you to discover and connect with a diverse and highly-qualified pool of candidates.</p>\n\n    <p>Whether you're an experienced professional, a recent graduate, or just curious about career options, our portal provides the tools and resources to navigate your journey. Explore tailored insights, personalized guidance, and a plethora of opportunities designed to align with your unique aspirations.</p>\n\n    <p>We're dedicated to simplifying and enhancing the job search and hiring experience for all, fostering meaningful connections that lead to professional success. Join us and embark on a rewarding path towards achieving your career aspirations. At our portal, we believe that every connection made is a step closer to turning dreams into reality.</p>\n</body>\n</html>\n");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(rSPanelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 1431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(rSPanelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                .addGap(377, 377, 377))
         );
 
         About_us.setViewportView(jPanel6);
@@ -957,6 +1053,11 @@ public class Homapage extends javax.swing.JFrame {
 
     private void helplineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helplineActionPerformed
         // TODO add your handling code here:
+        if (hlp.isVisible()) {
+            hlp.setVisible(false);
+        } else {
+            hlp.setVisible(true);
+        }
     }//GEN-LAST:event_helplineActionPerformed
 
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
@@ -971,7 +1072,11 @@ public class Homapage extends javax.swing.JFrame {
 
     private void faqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faqActionPerformed
         // TODO add your handling code here:
-        new FAQ().setVisible(true);
+        if (faqq.isVisible()) {
+            faqq.setVisible(false);
+        } else {
+            faqq.setVisible(true);
+        }
     }//GEN-LAST:event_faqActionPerformed
 
     private void materialButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton2ActionPerformed
@@ -1059,6 +1164,15 @@ public class Homapage extends javax.swing.JFrame {
         home.setForeground(new Color(39, 24, 126));
     }//GEN-LAST:event_helplineMouseClicked
 
+    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
+        // TODO add your handling code here:
+        if (cntct.isVisible()) {
+            cntct.setVisible(false);
+        } else {
+            cntct.setVisible(true);
+        }
+    }//GEN-LAST:event_contactActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1098,6 +1212,7 @@ public class Homapage extends javax.swing.JFrame {
     private javax.swing.JScrollPane About_us;
     private javax.swing.JScrollPane Home;
     private necesario.MaterialButton about;
+    private javax.swing.JLabel close;
     private necesario.MaterialButton contact;
     private necesario.MaterialButton faq;
     private necesario.MaterialButton helpline;
@@ -1137,6 +1252,7 @@ public class Homapage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

@@ -43,7 +43,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import opening.Home;
+import opening.Homapage;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
@@ -120,7 +120,7 @@ public class jobseeker extends javax.swing.JFrame {
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Home frm = new Home();
+                Homapage frm = new Homapage();
                 frm.setVisible(true);
                 dispose();
             }
@@ -1434,7 +1434,7 @@ public class jobseeker extends javax.swing.JFrame {
         obj.showMessage("Delete account ?", "Are you Sure you want to delete Your Account?\nYour data will lose if you press ok button");
         if (obj.getMessageType() == MessageDialog.MessageType.OK) {
             js.delete_row(Integer.parseInt(userId.getText()));
-            Home hpage=new Home();
+            Homapage hpage=new Homapage();
             hpage.setVisible(true);
             this.dispose();
         } else {

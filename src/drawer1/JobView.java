@@ -30,11 +30,10 @@ public class JobView extends javax.swing.JPanel {
         this.setLayout(new WrapLayout(WrapLayout.LEADING, 80, 80));
         var grid = this;
         //this.setBackground(Color.white);
-        for (job_info bk: job_d) {
+        for (job_info bk : job_d) {
             this.add(new job_view(bk));
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -56,7 +56,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Home frame = new Home();
+                Homapage frame = new Homapage();
                 frame.setVisible(true);
                 frame.pack();
                 frame.setLocationRelativeTo(null);

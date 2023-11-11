@@ -131,7 +131,7 @@ public class display_jobs extends javax.swing.JPanel {
 
         ScrollView.setBackground(new java.awt.Color(204, 204, 255));
         ScrollView.setForeground(new java.awt.Color(255, 255, 255));
-        add(ScrollView, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 160, 1530, 510));
+        add(ScrollView, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 160, 1530, 550));
 
         materialButton1.setBackground(new java.awt.Color(153, 0, 153));
         materialButton1.setForeground(new java.awt.Color(255, 255, 255));

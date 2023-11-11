@@ -37,7 +37,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.SwingConstants.HORIZONTAL;
 import javax.swing.table.DefaultTableModel;
-import opening.Home;
+import opening.Homapage;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -112,7 +112,7 @@ public class Recruiter extends javax.swing.JFrame {
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Home h = new Home();
+                Homapage h = new Homapage();
                 h.setVisible(true);
                 dispose();
             }

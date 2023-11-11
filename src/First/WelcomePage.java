@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package First;
-import opening.Home;
+import opening.Homapage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -45,9 +45,9 @@ public class WelcomePage extends javax.swing.JFrame {
         loadinglebel.setForeground(new java.awt.Color(255, 255, 255));
         loadinglebel.setText("Loading . . .");
         getContentPane().add(loadinglebel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 230, 30));
-        getContentPane().add(loadingbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 900, 10));
+        getContentPane().add(loadingbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 900, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/welcome.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/CareerPathX_welcome2.gif"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 900, 510));
 
         pack();
@@ -64,33 +64,33 @@ public class WelcomePage extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            /*for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }*/
-            
-            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            /*for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }*/
+//
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         //</editor-fold>
 
         /* Create and display the form */
         WelcomePage sp = new WelcomePage();
         sp.setVisible(true);
-        Home login = new Home();
+        Homapage login = new Homapage();
         try {
             for (int i = 0; i <= 100; i++) {
-                Thread.sleep(20);
+
                 if (i == 10) {
                     sp.loadinglebel.setText("Turning On Modules ...");
                 }
@@ -107,7 +107,7 @@ public class WelcomePage extends javax.swing.JFrame {
                     sp.loadinglebel.setText("Launching Application ...");
                 }
                 sp.loadingbar.setValue(i);
-
+                Thread.sleep(5);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

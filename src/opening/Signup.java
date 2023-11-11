@@ -39,7 +39,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Home frm = new Home();
+                Homapage frm = new Homapage();
                 frm.setVisible(true);
                 dispose();
             }
@@ -265,7 +265,7 @@ public class Signup extends javax.swing.JFrame {
                 if (!user.isPhnexist(phn)) {
                     if (!user.isjid(id)) {
                         user.insert(id, mail, fname, pass, phn, add, dob, gen);
-                        Home hpage = new Home();
+                        Homapage hpage = new Homapage();
                         hpage.setVisible(true);
                         hpage.pack();
                         hpage.setLocationRelativeTo(null);
