@@ -67,7 +67,6 @@ public class service_view extends javax.swing.JPanel {
         textArea1 = new try__.TextArea();
         jLabel73 = new javax.swing.JLabel();
         pr = new javax.swing.JLabel();
-        jButton57 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
         dur = new javax.swing.JLabel();
         tg = new javax.swing.JLabel();
@@ -100,10 +99,6 @@ public class service_view extends javax.swing.JPanel {
         pr.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pr.setText("0tk");
 
-        jButton57.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton57.setForeground(new java.awt.Color(0, 153, 255));
-        jButton57.setText("Know >");
-
         dur.setText("jLabel1");
 
         tg.setBackground(new java.awt.Color(255, 255, 255));
@@ -129,15 +124,12 @@ public class service_view extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pr, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                                .addComponent(jButton57))
+                            .addComponent(pr, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel73)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dur, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(dur, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(textAreaScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)))
@@ -172,10 +164,8 @@ public class service_view extends javax.swing.JPanel {
                     .addComponent(jLabel73)
                     .addComponent(dur))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton57)
-                    .addComponent(pr))
-                .addContainerGap())
+                .addComponent(pr)
+                .addGap(9, 9, 9))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -193,8 +183,10 @@ public class service_view extends javax.swing.JPanel {
         );
 
         if (result == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(this,"OK! Pay the fee of this course from your profile and start upgrading yourself","ok",JOptionPane.INFORMATION_MESSAGE);
-            
+            JOptionPane.showMessageDialog(this,"OK! our Bkash number is 0123456 \nGive the transaction number","ok",JOptionPane.INFORMATION_MESSAGE);
+            Transaction tr=new Transaction();
+            tr.setVisible(true);
+            tr.getprice(ji.pri);
         } else {
             // User clicked "No" or closed the dialog
             // Put your code here (if needed)
@@ -202,7 +194,6 @@ public class service_view extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dur;
-    private javax.swing.JButton jButton57;
     private try__.JCheckBoxCustom jCheckBoxCustom1;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JSeparator jSeparator5;

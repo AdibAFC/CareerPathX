@@ -374,7 +374,6 @@ public class Recruiter extends javax.swing.JFrame {
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        poster.setText("jLabel11");
         poster.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.add(poster, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, 700, 400));
 
@@ -510,6 +509,9 @@ public class Recruiter extends javax.swing.JFrame {
         textAreaScroll3.setViewportView(qual);
 
         jPanel5.add(textAreaScroll3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 280, -1));
+
+        jLabel22.setBackground(new java.awt.Color(215, 243, 243));
+        jLabel22.setOpaque(true);
         jPanel5.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 900));
 
         job_posting.setViewportView(jPanel5);

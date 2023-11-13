@@ -257,7 +257,7 @@ public class Admin extends javax.swing.JFrame {
                 int rowCount = rs.getInt(1);
                 jLabel23.setText(Integer.toString(rowCount));
             }
-            sql = "SELECT SUM(price) FROM services";
+            sql = "SELECT SUM(profit) FROM admin_profit";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
 

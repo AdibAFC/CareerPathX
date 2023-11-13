@@ -9,6 +9,7 @@ import drawer1.jobseeker;
 import drawer.Admin;
 import drawer1.job_view;
 import drawer2.Recruiter;
+import drawer2.display_applicants;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -313,6 +314,7 @@ public class Login extends javax.swing.JFrame {
                         Recruiter hpage = new Recruiter();
                         hpage.setVisible(true);
                         hpage.setRid(r_id,rm);
+                        display_applicants.getrid(r_id);
                         hpage.populatetable();
                         hpage.pack();
                         hpage.setLocationRelativeTo(null);

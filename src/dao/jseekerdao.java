@@ -47,7 +47,7 @@ public class jseekerdao {
                 JOptionPane.showMessageDialog(null, "Information Added", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(userdao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(jseekerdao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

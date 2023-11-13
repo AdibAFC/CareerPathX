@@ -25,8 +25,8 @@ public class display_applicants extends javax.swing.JPanel {
      * Creates new form display_applicants
      */
     AppView jblist = null;
-    int r_id = 0;
-    public void getrid(int x) {
+    static int r_id = 0;
+    public static void getrid(int x) {
         r_id = x;
         System.out.println(r_id);
     }
