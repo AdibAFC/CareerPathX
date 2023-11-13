@@ -19,7 +19,9 @@ public class app_view extends javax.swing.JPanel {
      * Creates new form app_view
      */
     applicant_info ji;
-    cv x=new cv();
+    cv x = new cv();
+    static String mail = "";
+
     public app_view(applicant_info ji) {
 
         initComponents();
@@ -27,8 +29,8 @@ public class app_view extends javax.swing.JPanel {
         this.ji = ji;
         apname.setText(ji.an);
         jti.setText(ji.jt);
-        Date timestamp = ji.ad; 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+        Date timestamp = ji.ad;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formattedDate = dateFormat.format(timestamp);
         ada.setText(formattedDate);
         if (ji.cv != null) {
@@ -127,10 +129,13 @@ public class app_view extends javax.swing.JPanel {
     private void materialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton1ActionPerformed
         // TODO add your handling code here:
         x.setVisible(true);
-        x.materialButton1.setText("Call "+ji.an+" for interview");
-        
-    }//GEN-LAST:event_materialButton1ActionPerformed
+        x.materialButton1.setText("Call " + ji.an + " for interview");
+        x.jLabel1.setText(mail);
 
+    }//GEN-LAST:event_materialButton1ActionPerformed
+    public static void getrmail(String x) {
+        mail=x;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ada;

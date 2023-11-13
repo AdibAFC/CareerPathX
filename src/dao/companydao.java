@@ -34,7 +34,7 @@ public class companydao {
             rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException ex) {
-            Logger.getLogger(userdao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(companydao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Close resources (ps and rs) here if needed
         }
@@ -46,7 +46,7 @@ public class companydao {
         try {
             if (imageStream != null) {
                 // Include the image insertion
-                sql = "insert into companies values(?,?,?,?,?,?)";
+                sql = "insert into companies (company, company_type, location, industry, website, company_logo) values(?,?,?,?,?,?)";
                 ps = con.prepareStatement(sql);
                 ps.setBinaryStream(6, imageStream);
             } else {
@@ -67,9 +67,46 @@ public class companydao {
                 // Handle uniqueness violation (company name already exists)
                 JOptionPane.showMessageDialog(null, "Company with the same name already exists", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                Logger.getLogger(recruiterdao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(companydao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    public byte[] getIcon(String cname) {
+        String sql = "SELECT company_logo FROM companies WHERE company = ?";
+        InputStream iconStream = null;
+
+        byte[] x = null;
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, cname);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    x = rs.getBytes("company_logo");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(companydao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return x;
+    }
+
+    public String getwebsite(String cname) {
+        String sql = "SELECT website FROM companies WHERE company = ?";
+        String name = null;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, cname);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    name = rs.getString("website");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(companydao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return name;
     }
 
 }

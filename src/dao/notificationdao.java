@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,5 +46,21 @@ public class notificationdao {
             Logger.getLogger(notificationdao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+    public void insert(String smail,String rmail,String msg)
+    {
+        String sql = "insert into interviewnotifications (semail, remail,message) values(?,?,?)";
+        try {
+            ps=con.prepareStatement(sql);
+            ps.setString(1, smail);
+            ps.setString(2, rmail);
+            ps.setString(3, msg);
+            if(ps.executeUpdate()>0)
+            {
+                JOptionPane.showMessageDialog(null, "Applicant has been informed", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(notificationdao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

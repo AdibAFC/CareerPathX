@@ -4,7 +4,6 @@
  */
 package details;
 
-
 import java.sql.Timestamp;
 
 /**
@@ -102,13 +101,16 @@ public class notification_info {
     private String txt;
     private Boolean is_rd;
     private Timestamp nt_t;
-    public notification_info(){}
-    public notification_info(int n_id,String semail,String remail,String txt,Boolean is_rd,Timestamp nt_t){
-        this.n_id=n_id;
-        this.semail=semail;
-        this.remail=remail;
-        this.txt=txt;
-        this.is_rd=is_rd;
-        this.nt_t=nt_t;
+
+    public notification_info() {
+    }
+
+    public notification_info(int n_id, String semail, String remail, String txt, Boolean is_rd, Timestamp nt_t) {
+        this.n_id = n_id;
+        this.semail = semail;
+        this.remail = remail;
+        this.txt = txt;
+        this.is_rd = is_rd;
+        this.nt_t = nt_t;
     }
 }

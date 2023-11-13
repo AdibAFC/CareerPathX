@@ -150,7 +150,6 @@ public class Recruiter extends javax.swing.JFrame {
             @Override
             public void run() {
                 while (true) {
-
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
@@ -174,8 +173,7 @@ public class Recruiter extends javax.swing.JFrame {
         display_applicants2.update_list(r_id); // Call the method to update the combo box
         display_applicants2.set_job_combo(r_id);
         //display_applicants2.setVisible(true);
-        cv c=new cv();
-        c.getrid(rm);
+        app_view.getrmail(rm);
     }
 
     /**
@@ -216,6 +214,7 @@ public class Recruiter extends javax.swing.JFrame {
         jdes = new try__.TextArea();
         textAreaScroll3 = new try__.TextAreaScroll();
         qual = new try__.TextArea();
+        rSButtonHover1 = new rojerusan.RSButtonHover();
         jLabel22 = new javax.swing.JLabel();
         Applicants = new javax.swing.JPanel();
         display_applicants2 = new drawer2.display_applicants();
@@ -484,7 +483,7 @@ public class Recruiter extends javax.swing.JFrame {
         jPanel5.add(com, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 280, -1));
 
         jtitle.setLabelText("Job Title :");
-        jPanel5.add(jtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 280, -1));
+        jPanel5.add(jtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 280, -1));
 
         loc.setLabelText("Location :");
         jPanel5.add(loc, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 340, -1));
@@ -508,7 +507,15 @@ public class Recruiter extends javax.swing.JFrame {
         qual.setRows(5);
         textAreaScroll3.setViewportView(qual);
 
-        jPanel5.add(textAreaScroll3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 280, -1));
+        jPanel5.add(textAreaScroll3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 280, -1));
+
+        rSButtonHover1.setText("Add Company Info");
+        rSButtonHover1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 280, 30));
 
         jLabel22.setBackground(new java.awt.Color(215, 243, 243));
         jLabel22.setOpaque(true);
@@ -1608,16 +1615,16 @@ public class Recruiter extends javax.swing.JFrame {
 
     private void comKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comKeyReleased
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_comKeyReleased
 
     private void comKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comKeyPressed
         // TODO add your handling code here:
         //if (evt.getKeyChar() == '\n') {
-        company_info frame = new company_info();
-        frame.setVisible(true);
+        
         // Dispose of the company_info JFrame when you're done with it
         //this.setEnabled(false);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
         //}
     }//GEN-LAST:event_comKeyPressed
 
@@ -1654,6 +1661,13 @@ public class Recruiter extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
+        // TODO add your handling code here:
+        company_info frame = new company_info();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_rSButtonHover1ActionPerformed
     public boolean infoValid() {
         if (com.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill out the Company name", "Invalid", 2);
@@ -1826,6 +1840,7 @@ public class Recruiter extends javax.swing.JFrame {
     private careerpathx.PasswordField passmail;
     private javax.swing.JLabel poster;
     private try__.TextArea qual;
+    private rojerusan.RSButtonHover rSButtonHover1;
     private javax.swing.JLabel rec;
     public try__.TextField rid;
     private try__.Combobox stat;

@@ -16,7 +16,7 @@ public class ScrollBarCustom extends JScrollBar{
     public ScrollBarCustom(){
         setUI(new ModernScrollBarUI());
         setPreferredSize(new Dimension(10,10));
-        setForeground(new Color(48,144,216));
+        setForeground(new Color(123, 153, 176));
         setBackground(Color.WHITE);
     }
     

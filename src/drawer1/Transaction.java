@@ -10,15 +10,11 @@ import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -146,6 +142,7 @@ public class Transaction extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(userdao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.dispose();
 
     }//GEN-LAST:event_materialButton1ActionPerformed
 

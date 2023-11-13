@@ -115,6 +115,7 @@ public class Notification extends javax.swing.JFrame {
 
         jLabel2.setText("semal");
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,25 +159,36 @@ public class Notification extends javax.swing.JFrame {
 
     public void populatetable() {
         ArrayList<notification_info> list = BindTable();
-        String[] colname = {"Recruiter", "Text", "status", "Time"};
+        String[] colname = {"Recruiter", "Text", "Status", "Time"};
         Object[][] rows = new Object[list.size()][4];
+
         for (int i = 0; i < list.size(); i++) {
             rows[i][0] = list.get(i).getRemail();
             rows[i][1] = list.get(i).getTxt();
             rows[i][2] = list.get(i).getIs_rd();
             rows[i][3] = list.get(i).getNt_t();
-            model = new DefaultTableModel(rows, colname) {
-
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false;
-                }
-            };
-            jtable.setModel(model);
-            jtable.setRowHeight(80);
-
         }
+
+        // Move the model creation outside the loop
+        model = new DefaultTableModel(rows, colname) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                if (columnIndex == 2) { // Assuming "Status" is at index 2
+                    return Boolean.class; // Specify the class for boolean values
+                }
+                return super.getColumnClass(columnIndex);
+            }
+        };
+
+        jtable.setModel(model);
+        jtable.setRowHeight(80);
     }
+
     Connection con = Myconnection.getConnection();
 
     public ArrayList<notification_info> BindTable() {
@@ -236,7 +248,7 @@ public class Notification extends javax.swing.JFrame {
         } else {
             if (mark.isSelected()) {
                 try {
-                    String query = "DELETE FROM interviewnotifications WHERE remail = ? AND semail = ?";
+                    String query = "UPDATE interviewnotifications set is_read = 1 WHERE remail = ? AND semail = ?";
                     PreparedStatement preparedStatement = con.prepareStatement(query);
                     preparedStatement.setString(1, (String) model.getValueAt(selrow, 0));
                     preparedStatement.setString(2, jLabel2.getText());

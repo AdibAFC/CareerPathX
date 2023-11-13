@@ -7,7 +7,13 @@ package drawer;
 import dao.ImageIconCellRenderer;
 import dao.applicantdao;
 import details.applicant_info;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -16,6 +22,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -30,6 +37,9 @@ public class Notification extends javax.swing.JFrame {
     applicantdao ai = new applicantdao();
 
     public Notification() {
+        setUndecorated(true);
+        setLocationRelativeTo(null);
+        setBackground(new Color(0.0f, 0.0f, 0.0f, 0.7f));
         initComponents();
         populatetable();
     }
@@ -68,7 +78,7 @@ public class Notification extends javax.swing.JFrame {
             }
         };
         jtable.setModel(model);
-        jtable.setRowHeight(120);
+        jtable.setRowHeight(50);
         jtable.getColumnModel().getColumn(4).setCellRenderer(new ImageIconCellRenderer());
 
     }
@@ -86,9 +96,9 @@ public class Notification extends javax.swing.JFrame {
         jtable = new rojeru_san.complementos.RSTableMetro();
         combobox1 = new try__.Combobox();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
         jtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,6 +135,25 @@ public class Notification extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("X");
+        jLabel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jLabel1AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,16 +163,23 @@ public class Notification extends javax.swing.JFrame {
                 .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(combobox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combobox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -177,9 +213,31 @@ public class Notification extends javax.swing.JFrame {
             // Convert the date string to a Timestamp
             Timestamp adate = (Timestamp) model.getValueAt(selrow, 5);
 
-            InputStream cv = null; // You need to obtain the InputStream for CV data from your model.
+            InputStream cv = null;
             if (model.getValueAt(selrow, 4) != null) {
-                cv = (InputStream) model.getValueAt(selrow, 4);
+                Object value = model.getValueAt(selrow, 4);
+                if (value instanceof ImageIcon) {
+                    // Convert ImageIcon to BufferedImage
+                    ImageIcon icon = (ImageIcon) value;
+                    BufferedImage image = new BufferedImage(
+                            icon.getIconWidth(),
+                            icon.getIconHeight(),
+                            BufferedImage.TYPE_INT_ARGB);
+                    Graphics g = image.createGraphics();
+                    icon.paintIcon(null, g, 0, 0);
+                    g.dispose();
+
+                    // Convert BufferedImage to InputStream (you may need to handle IOException)
+                    ByteArrayOutputStream os = new ByteArrayOutputStream();
+                    try {
+                        ImageIO.write(image, "png", os);
+                        cv = new ByteArrayInputStream(os.toByteArray());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else if (value instanceof InputStream) {
+                    cv = (InputStream) value;
+                }
             }
 
             // Assuming combobox1 is a JComboBox
@@ -198,6 +256,16 @@ public class Notification extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel1AncestorAdded
+        // TODO add your handling code here:
+        //this.dispose();
+    }//GEN-LAST:event_jLabel1AncestorAdded
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -237,6 +305,7 @@ public class Notification extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private try__.Combobox combobox1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private rojeru_san.complementos.RSTableMetro jtable;
     // End of variables declaration//GEN-END:variables

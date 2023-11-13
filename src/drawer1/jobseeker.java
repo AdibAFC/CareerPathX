@@ -1442,6 +1442,7 @@ public class jobseeker extends javax.swing.JFrame {
         Notification not=new Notification();
         not.jLabel2.setText(userMail.getText());
         not.setVisible(true);
+        not.populatetable();
         
     }//GEN-LAST:event_badgeButton1ActionPerformed
 

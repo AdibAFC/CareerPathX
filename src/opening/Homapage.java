@@ -22,7 +22,7 @@ import javaswingdev.drawer.DrawerItem;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.Timer;
-import menubar.Contact;
+import menubar.Career_Advice;
 import menubar.FAQ;
 import menubar.Helpline;
 
@@ -37,7 +37,7 @@ public class Homapage extends javax.swing.JFrame {
      */
     FAQ faqq = new FAQ();
     Helpline hlp = new Helpline();
-    Contact cntct = new Contact();
+    Career_Advice cntct = new Career_Advice();
     private DrawerController drawer;
 
     public Homapage() {
@@ -330,7 +330,7 @@ public class Homapage extends javax.swing.JFrame {
         });
 
         contact.setForeground(new java.awt.Color(39, 24, 126));
-        contact.setText("Contact us");
+        contact.setText("Advice");
         contact.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         contact.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -176,6 +176,9 @@ public class company_info extends javax.swing.JFrame {
         if (!Cname.isEmpty()) {
             if (cmd.isCompanyExist(Cname)) {
                 //retrive logo and website
+                web.setText(cmd.getwebsite(Cname));
+                ImageIcon img = new ImageIcon(new ImageIcon(cmd.getIcon(Cname)).getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), Image.SCALE_SMOOTH));
+                jLabel3.setIcon(img);
             } else {
                 web.setEnabled(true);
                 up.setEnabled(true);
@@ -238,7 +241,9 @@ public class company_info extends javax.swing.JFrame {
                 imgStream = new ByteArrayInputStream(baos.toByteArray());
             }
             cmd.insert(Cname, Ctype, Location, Inds, link, imgStream);
-            rc.updateComText(cname.getText());
+            //rc.setVisible(true);
+           // rc.updateComText(cname.getText());
+           // this.dispose();
         }
     }//GEN-LAST:event_doneActionPerformed
 
