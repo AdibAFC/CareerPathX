@@ -62,7 +62,7 @@ public class jobseeker extends javax.swing.JFrame {
     jseekerdao js = new jseekerdao();
     DefaultTableModel model = new DefaultTableModel();
     private DrawerController drawer;
-
+    
     public jobseeker() {
         initComponents();
         setTime();
@@ -155,7 +155,7 @@ public class jobseeker extends javax.swing.JFrame {
             public void mouseMoved(MouseEvent me) {
                 //close.setBackground(Color.RED);
                 close.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
+                
             }
         });
         close.addMouseListener(new MouseAdapter() {
@@ -1234,13 +1234,13 @@ public class jobseeker extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Name doesn't contain any number!", "Warning", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_FullnameKeyTyped
-
+    
     public void setTime() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
-
+                    
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
@@ -1288,7 +1288,7 @@ public class jobseeker extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(null);
-
+        
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
             String path = f.getAbsolutePath();
@@ -1320,14 +1320,14 @@ public class jobseeker extends javax.swing.JFrame {
             return false;
         }
         return true;
-
+        
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         // Create a file chooser dialog to select the CV file
         JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(null);
-
+        
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
             String path = f.getAbsolutePath();
@@ -1343,7 +1343,7 @@ public class jobseeker extends javax.swing.JFrame {
             // Handle the case where the user canceled the file selection
             // You can provide a message or perform other actions as needed.
         }
-
+        
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1372,10 +1372,10 @@ public class jobseeker extends javax.swing.JFrame {
                 try {
                     ImageIO.write(bi, "png", baos);
                 } catch (IOException ex) {
-
+                    
                 }
                 imgStream = new ByteArrayInputStream(baos.toByteArray());
-
+                
             }
             Icon icon1 = cv.getIcon();
             InputStream imgStream1 = null;
@@ -1388,16 +1388,16 @@ public class jobseeker extends javax.swing.JFrame {
                 try {
                     ImageIO.write(bi, "png", baos);
                 } catch (IOException ex) {
-
+                    
                 }
                 imgStream1 = new ByteArrayInputStream(baos.toByteArray());
-
+                
             }
             //cv
             js.j_can_edit(id, Email, Name, pass, Contact, address, Dob, gen, imgStream, imgStream1);
         }
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
-
+    
     void openpdf(String file) {
         try {
             // Create a SwingController
@@ -1427,7 +1427,7 @@ public class jobseeker extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "PDF Load Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
         // TODO add your handling code here:
@@ -1439,11 +1439,14 @@ public class jobseeker extends javax.swing.JFrame {
 
     private void badgeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_badgeButton1ActionPerformed
         // TODO add your handling code here:
-        Notification not=new Notification();
-        not.jLabel2.setText(userMail.getText());
-        not.setVisible(true);
-        not.populatetable();
-        
+//        Notification not=new Notification();
+//        not.jLabel2.setText(userMail.getText());
+//        not.setVisible(true);
+//        not.populatetable();
+        Jnotification x = new Jnotification();
+        x.getsmail(userMail.getText());
+        x.setNumbers();
+        x.setVisible(true);
     }//GEN-LAST:event_badgeButton1ActionPerformed
 
     private void materialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton1ActionPerformed
@@ -1452,7 +1455,7 @@ public class jobseeker extends javax.swing.JFrame {
         obj.showMessage("Delete account ?", "Are you Sure you want to delete Your Account?\nYour data will lose if you press ok button");
         if (obj.getMessageType() == MessageDialog.MessageType.OK) {
             js.delete_row(Integer.parseInt(userId.getText()));
-            Homapage hpage=new Homapage();
+            Homapage hpage = new Homapage();
             hpage.setVisible(true);
             this.dispose();
         } else {
@@ -1485,7 +1488,7 @@ public class jobseeker extends javax.swing.JFrame {
                 }
                 return super.getColumnClass(columnIndex);
             }
-
+            
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -1494,7 +1497,7 @@ public class jobseeker extends javax.swing.JFrame {
         jtable.setModel(model);
         jtable.setRowHeight(120);
         jtable.getColumnModel().getColumn(6).setCellRenderer(new ImageIconCellRenderer());
-
+        
     }
 
     /**
@@ -1528,7 +1531,7 @@ public class jobseeker extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new jobseeker().setVisible(true);
-
+                
             }
         });
     }

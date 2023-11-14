@@ -138,6 +138,7 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, 220, 50));
 
         signpass.setLabelText("Password");
+        signpass.setShowAndHide(true);
         getContentPane().add(signpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, 310, -1));
 
         textAreaScroll1.setLabelText("Address :");
