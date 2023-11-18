@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
+import opening.Signup;
 import try__.MessageDialog;
 
 public class try_a extends javax.swing.JFrame {
@@ -24,11 +25,15 @@ public class try_a extends javax.swing.JFrame {
         initComponents();
         DrawerItem childItem = new DrawerItem("Profile");
         DrawerItem logout = new DrawerItem("Logout");
-
-        // Add action listeners for Profile and Logout items
+        
         childItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Signup hpage = new Signup();
+                hpage.setVisible(true);
+                hpage.pack();
+                hpage.setLocationRelativeTo(null);
+                dispose();
             }
         });
 
@@ -39,7 +44,7 @@ public class try_a extends javax.swing.JFrame {
         });
 
         drawer = Drawer.newDrawer(this)
-                .header(new DrawerItem("").build())
+                .header(new DrawerItem("").icon(new ImageIcon(getClass().getResource("/Asset/java_dev.png"))).build())
                 .separator(2, new Color(175, 23, 25))
                 .background(new Color(183, 15, 25))
                 .addChild(childItem.build())

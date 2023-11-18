@@ -33,7 +33,7 @@ public class recruiterdao {
         try {
             if (imageStream != null) {
                 // Include the image insertion
-                sql = "insert into recruiter values(?,?,?,?,?,?,?,?,?)";
+                sql = "insert into recruiter (rid, remail, rname, rpass, rphn, radd, rdob, rgender,rpic) values(?,?,?,?,?,?,?,?,?)";
                 ps = con.prepareStatement(sql);
                 ps.setBinaryStream(9, imageStream);
             } else {

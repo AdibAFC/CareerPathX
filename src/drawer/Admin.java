@@ -40,6 +40,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -376,33 +377,50 @@ public class Admin extends javax.swing.JFrame {
         // Create dataset for the graph
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        dataset.setValue(150, "Amount", "january");
-        dataset.setValue(130, "Amount", "february");
-        dataset.setValue(16, "Amount", "march");
-        dataset.setValue(120, "Amount", "april");
-        dataset.setValue(90, "Amount", "may");
-        dataset.setValue(200, "Amount", "june");
+        try {
+            Connection con = Myconnection.getConnection();
+            String sql = "SELECT MONTH(dateadd) AS month, SUM(profit) AS total_profit FROM admin_profit GROUP BY MONTH(dateadd)";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
 
-        JFreeChart linechart = ChartFactory.createLineChart("contribution", "monthly", "amount",
-                dataset, PlotOrientation.VERTICAL, false, true, false);
+            while (rs.next()) {
+                // Extract month and total profit from the result set
+                int month = rs.getInt("month");
+                int totalProfit = rs.getInt("total_profit");
 
-        CategoryPlot lineCategoryPlot = linechart.getCategoryPlot();
-        lineCategoryPlot.setBackgroundPaint(Color.lightGray); // Set the background color
-        
-        LineAndShapeRenderer lineRenderer = (LineAndShapeRenderer) lineCategoryPlot.getRenderer();
-        Color lineChartColor = new Color(204, 0, 51);
-        lineRenderer.setSeriesPaint(0, Color.black);
-        linechart.setBackgroundPaint(Color.white);
-        // Create a thicker line stroke
-        BasicStroke lineStroke = new BasicStroke(2.0f); // Adjust line thickness as needed
+                // Add data to the dataset
+                dataset.addValue(totalProfit, "Monthly Profit", getMonthName(month));
+            }
 
-        // Apply the thicker line stroke to the first series (series index 0)
-        lineRenderer.setSeriesStroke(0, lineStroke);
+            JFreeChart linechart = ChartFactory.createLineChart("contribution", "monthly", "amount",
+                    dataset, PlotOrientation.VERTICAL, false, true, false);
 
-        ChartPanel lineChartPanel = new ChartPanel(linechart);
-        grph.removeAll();
-        grph.add(lineChartPanel, BorderLayout.CENTER);
-        grph.validate();
+            CategoryPlot lineCategoryPlot = linechart.getCategoryPlot();
+            lineCategoryPlot.setBackgroundPaint(Color.lightGray); // Set the background color
+
+            LineAndShapeRenderer lineRenderer = (LineAndShapeRenderer) lineCategoryPlot.getRenderer();
+            Color lineChartColor = new Color(204, 0, 51);
+            lineRenderer.setSeriesPaint(0, Color.black);
+            linechart.setBackgroundPaint(Color.white);
+            // Create a thicker line stroke
+            BasicStroke lineStroke = new BasicStroke(2.0f); // Adjust line thickness as needed
+
+            // Apply the thicker line stroke to the first series (series index 0)
+            lineRenderer.setSeriesStroke(0, lineStroke);
+
+            ChartPanel lineChartPanel = new ChartPanel(linechart);
+            grph.removeAll();
+            grph.add(lineChartPanel, BorderLayout.CENTER);
+            grph.validate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getMonthName(int month) {
+        // Convert month number to month name (assuming 1-based index)
+        return new DateFormatSymbols().getMonths()[month - 1];
     }
 
     private void init() {
@@ -555,10 +573,10 @@ public class Admin extends javax.swing.JFrame {
         adname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jtime.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        jtime.setForeground(new java.awt.Color(0, 0, 204));
+        jtime.setForeground(new java.awt.Color(255, 255, 255));
 
         jdate.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        jdate.setForeground(new java.awt.Color(0, 0, 204));
+        jdate.setForeground(new java.awt.Color(255, 255, 255));
 
         close.setBackground(new java.awt.Color(255, 255, 255));
         close.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N

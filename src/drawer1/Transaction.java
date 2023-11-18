@@ -13,8 +13,10 @@ import java.awt.event.MouseMotionAdapter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Timestamp;
 
 /**
  *
@@ -131,11 +133,12 @@ public class Transaction extends javax.swing.JFrame {
     private void materialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton1ActionPerformed
         // TODO add your handling code here:
         String sql;
+        Timestamp ada = new Timestamp(new Date().getTime());
         try {
-            sql = "insert into admin_profit (profit) values(?)";
+            sql = "insert into admin_profit (profit,dateadd) values(?,?)";
             ps = con.prepareStatement(sql);
             ps.setInt(1, price);
-
+            ps.setTimestamp(2, ada);
             if (ps.executeUpdate() > 0) {
                 //JOptionPane.showMessageDialog(null, "Information Added", "Success", JOptionPane.INFORMATION_MESSAGE);
             }

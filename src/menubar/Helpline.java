@@ -91,7 +91,7 @@ public class Helpline extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setBounds(355, 200, 470, 542);
+        setBounds(355, 180, 470, 542);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
