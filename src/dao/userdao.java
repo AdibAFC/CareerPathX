@@ -176,4 +176,17 @@ public class userdao {
             Logger.getLogger(userdao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void insertrev(String mail){
+        String sql = "insert into review (email) values(?)";
+        try {
+            ps=con.prepareStatement(sql);
+            ps.setString(1, mail);
+            if(ps.executeUpdate()>0)
+            {
+                //JOptionPane.showMessageDialog(null, "Registration Successful! Welcome to CareerPathX!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(userdao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

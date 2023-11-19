@@ -9,6 +9,7 @@ import careerpathx.ScrollBarCustom;
 import dao.ImageIconCellRenderer;
 import dao.jobdao;
 import details.job_info;
+import drawer.Review;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -180,6 +181,7 @@ public class Recruiter extends javax.swing.JFrame {
         jtime = new javax.swing.JLabel();
         jdate = new javax.swing.JLabel();
         rec = new javax.swing.JLabel();
+        materialButton3 = new necesario.MaterialButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         job_posting = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
@@ -298,6 +300,16 @@ public class Recruiter extends javax.swing.JFrame {
         rec.setForeground(new java.awt.Color(255, 255, 255));
         rec.setText("jLabel1");
 
+        materialButton3.setBackground(new java.awt.Color(39, 24, 126));
+        materialButton3.setForeground(new java.awt.Color(255, 255, 255));
+        materialButton3.setText("Review");
+        materialButton3.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        materialButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materialButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -311,7 +323,9 @@ public class Recruiter extends javax.swing.JFrame {
                         .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(1115, Short.MAX_VALUE))
+                        .addGap(368, 368, 368)
+                        .addComponent(materialButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(649, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rec, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,12 +333,6 @@ public class Recruiter extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -334,6 +342,17 @@ public class Recruiter extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(materialButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, -1));
@@ -1494,6 +1513,13 @@ public class Recruiter extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton22ActionPerformed
 
+    private void materialButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton3ActionPerformed
+        // TODO add your handling code here:
+        Review x=new Review();
+        x.getmail(rec.getText());
+        x.setVisible(true);
+    }//GEN-LAST:event_materialButton3ActionPerformed
+
     public boolean infoValid() {
         if (com.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill out the Company name", "Invalid", 2);
@@ -1641,6 +1667,8 @@ public class Recruiter extends javax.swing.JFrame {
     private javax.swing.JLabel jtime;
     private try__.TextField jtitle;
     private try__.TextField loc;
+    private necesario.MaterialButton materialButton2;
+    private necesario.MaterialButton materialButton3;
     private javax.swing.JTextField no;
     private javax.swing.JScrollPane offers;
     private javax.swing.JLabel poster;

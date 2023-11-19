@@ -4209,11 +4209,7 @@ public class Jobseekertest extends javax.swing.JFrame {
 
     private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
         // TODO add your handling code here:
-        jobs jobframe = new jobs();
-        jobframe.setVisible(true);
-        jobframe.pack();
-        jobframe.setLocationRelativeTo(null);
-        this.dispose();
+        
     }//GEN-LAST:event_button5ActionPerformed
 
     private void button14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button14ActionPerformed
@@ -4557,11 +4553,7 @@ public class Jobseekertest extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        jobs jobframe = new jobs();
-        jobframe.setVisible(true);
-        jobframe.pack();
-        jobframe.setLocationRelativeTo(null);
-        this.dispose();
+        
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -4610,24 +4602,7 @@ public class Jobseekertest extends javax.swing.JFrame {
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
 
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, jList1.getSelectedValue(), "Selected Sector", JOptionPane.INFORMATION_MESSAGE);
-        jobs hpage = new jobs();
-
-        if (jList1.getSelectedValue() == "Accounting") {
-            hpage.setVisible(true);
-            hpage.pack();
-            hpage.setLocationRelativeTo(null);
-            //Admin1.adminEmail.setText(name);
-            this.dispose();
-        }
-
-        if (jList1.getSelectedValue() == "IT") {
-            hpage.setVisible(true);
-            hpage.pack();
-            hpage.setLocationRelativeTo(null);
-            //Admin.adminEmail.setText(name);
-            this.dispose();
-        }
+        
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased

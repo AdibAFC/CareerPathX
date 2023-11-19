@@ -5,6 +5,7 @@
 package drawer2;
 
 import details.applicant_info;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -34,9 +35,21 @@ public class app_view extends javax.swing.JPanel {
         String formattedDate = dateFormat.format(timestamp);
         ada.setText(formattedDate);
         if (ji.cv != null) {
-            ImageIcon imageIcon = new ImageIcon(ji.cv);
-            x.cv.setIcon(imageIcon);
-        } else {
+    // Create an ImageIcon from ji.cv
+    ImageIcon imageIcon = new ImageIcon(ji.cv);
+
+    // Get the dimensions of x.cv label
+    int labelWidth = x.cv.getWidth();
+    int labelHeight = x.cv.getHeight();
+
+    // Resize the ImageIcon to match the label size
+    Image image = imageIcon.getImage().getScaledInstance(labelWidth, labelHeight, Image.SCALE_SMOOTH);
+    ImageIcon resizedIcon = new ImageIcon(image);
+
+    // Set the resized ImageIcon to the label
+    x.cv.setIcon(resizedIcon);
+}
+ else {
             x.cv.setIcon(null);
         }
     }

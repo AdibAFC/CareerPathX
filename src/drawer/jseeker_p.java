@@ -4,6 +4,11 @@
  */
 package drawer;
 
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 /**
  *
  * @author Hp
@@ -23,6 +28,19 @@ public class jseeker_p extends javax.swing.JFrame {
         jTextField6.setEditable(false);
         jTextField7.setEditable(false);
         jTextField8.setEditable(false);
+        close.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent me) {
+                close.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+            }
+        });
+        close.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+            }
+        });
     }
 
     /**
@@ -52,10 +70,12 @@ public class jseeker_p extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         pp = new javax.swing.JLabel();
         jLabellNoselectedRowMessage = new javax.swing.JLabel();
+        close = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 500));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -121,6 +141,12 @@ public class jseeker_p extends javax.swing.JFrame {
         jLabellNoselectedRowMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabellNoselectedRowMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 500, 80));
 
+        close.setBackground(new java.awt.Color(255, 255, 255));
+        close.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        close.setText("X");
+        getContentPane().add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 40, -1));
+
         bg.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         bg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/jseeker_prf_bg.png"))); // NOI18N
@@ -168,6 +194,7 @@ public class jseeker_p extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
+    private javax.swing.JLabel close;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

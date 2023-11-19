@@ -266,6 +266,7 @@ public class Signup extends javax.swing.JFrame {
                 if (!user.isPhnexist(phn)) {
                     if (!user.isjid(id)) {
                         user.insert(id, mail, fname, pass, phn, add, dob, gen);
+                        user.insertrev(mail);
                         Homapage hpage = new Homapage();
                         hpage.setVisible(true);
                         hpage.pack();

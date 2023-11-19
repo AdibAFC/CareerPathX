@@ -103,6 +103,8 @@ public class Admin extends javax.swing.JFrame {
         init();
         setTime();
         setNumbers();
+        setProgressBar();
+        setIcons();
         overview.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane4.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane4.setVerticalScrollBar(new ScrollBarCustom());
@@ -265,6 +267,124 @@ public class Admin extends javax.swing.JFrame {
             if (rs.next()) {
                 double totalPrice = rs.getDouble(1); // Use getDouble for numeric values
                 jLabel25.setText("" + totalPrice);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setProgressBar() {
+        try {
+            Connection con = Myconnection.getConnection();
+            String sql;
+            PreparedStatement pst;
+            java.sql.ResultSet rs;
+            String s = "select count(*) from review";
+            PreparedStatement pst2 = con.prepareStatement(s);
+            java.sql.ResultSet rs1 = pst2.executeQuery();
+
+            if (rs1.next()) {
+                int r = rs1.getInt(1);
+                sql = "select count(*) from review where rev = 5";
+                pst = con.prepareStatement(sql);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    int rowCount = rs.getInt(1);
+                    rowCount = (rowCount * 100) / r;
+                    jProgressBar1.setValue(rowCount);
+                }
+
+                sql = "select count(*) from review where rev = 4";
+                pst = con.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    int rowCount = rs.getInt(1);
+                    rowCount = (rowCount * 100) / r;
+                    jProgressBar2.setValue(rowCount);
+                }
+                sql = "select count(*) from review where rev = 3";
+                pst = con.prepareStatement(sql);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    int rowCount = rs.getInt(1);
+                    rowCount = (rowCount * 100) / r;
+                    jProgressBar3.setValue(rowCount);
+                }
+
+                sql = "select count(*) from review where rev = 2";
+                pst = con.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    int rowCount = rs.getInt(1);
+                    rowCount = (rowCount * 100) / r;
+                    jProgressBar4.setValue(rowCount);
+                }
+                sql = "select count(*) from review where rev = 1";
+                pst = con.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    int rowCount = rs.getInt(1);
+                    rowCount = (rowCount * 100) / r;
+                    jProgressBar5.setValue(rowCount);
+                }
+
+            }
+            String countSql = "select count(*) from review where rev != 0";
+            PreparedStatement countPst = con.prepareStatement(countSql);
+            ResultSet countRs = countPst.executeQuery();
+
+            if (countRs.next()) {
+                int rowCountRevNotZero = countRs.getInt(1);
+                jLabel44.setText(""+rowCountRevNotZero);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    ImageIcon page1 = new ImageIcon(getClass().getResource("/Asset/icons8-starC-48.png"));
+
+    public void setIcons() {
+        try {
+            Connection con = Myconnection.getConnection();
+            String countSql = "select count(*) from review";
+            PreparedStatement countPst = con.prepareStatement(countSql);
+            ResultSet countRs = countPst.executeQuery();
+
+            if (countRs.next()) {
+                int totalReviews = countRs.getInt(1);
+
+                // Calculate the average
+                String avgSql = "select avg(rev) as average_review from review where rev!=0";
+                PreparedStatement avgPst = con.prepareStatement(avgSql);
+                ResultSet avgRs = avgPst.executeQuery();
+
+                if (avgRs.next()) {
+                    double averageReview = avgRs.getDouble("average_review");
+                    String r = String.format("%.1f", averageReview);
+                    jLabel38.setText(r);
+                    if (averageReview >= 1.0) {
+                        one.setIcon(page1);
+                    }
+                    if (averageReview >= 2.0) {
+                        two.setIcon(page1);
+                    }
+                    if (averageReview >= 3.0) {
+                        three.setIcon(page1);
+                    }
+                    if (averageReview >= 4.0) {
+                        four.setIcon(page1);
+                    }
+                    if (averageReview == 5.0) {
+                        five.setIcon(page1);
+                    }
+                }
+
             }
 
         } catch (Exception e) {
@@ -480,6 +600,24 @@ public class Admin extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jProgressBar3 = new javax.swing.JProgressBar();
+        jProgressBar4 = new javax.swing.JProgressBar();
+        jProgressBar5 = new javax.swing.JProgressBar();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        one = new javax.swing.JLabel();
+        two = new javax.swing.JLabel();
+        three = new javax.swing.JLabel();
+        four = new javax.swing.JLabel();
+        five = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
         profiletab = new javax.swing.JPanel();
         dp1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -649,17 +787,17 @@ public class Admin extends javax.swing.JFrame {
         barchart.setBackground(new java.awt.Color(255, 255, 255));
         barchart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         barchart.setLayout(new java.awt.BorderLayout());
-        overviewtab.add(barchart, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 500, 320));
+        overviewtab.add(barchart, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 960, 500, 320));
 
         grph.setBackground(new java.awt.Color(255, 255, 255));
         grph.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         grph.setLayout(new java.awt.BorderLayout());
-        overviewtab.add(grph, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 470, 500, 320));
+        overviewtab.add(grph, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 960, 500, 320));
 
         pie.setBackground(new java.awt.Color(255, 255, 255));
         pie.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         pie.setLayout(new java.awt.BorderLayout());
-        overviewtab.add(pie, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 820, 520, 320));
+        overviewtab.add(pie, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 1330, 520, 320));
 
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -775,10 +913,140 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        overviewtab.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1240, 1510, -1));
+        overviewtab.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1690, 1510, -1));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/overview.png"))); // NOI18N
         overviewtab.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reviews", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 24), new java.awt.Color(0, 102, 102))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("5");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setText("4");
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel35.setText("2");
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel36.setText("3");
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel37.setText("1");
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel38.setText("4");
+
+        one.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/icons8-star-48.png"))); // NOI18N
+        one.setText("jLabel39");
+
+        two.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/icons8-star-48.png"))); // NOI18N
+        two.setText("jLabel39");
+
+        three.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/icons8-star-48.png"))); // NOI18N
+        three.setText("jLabel39");
+
+        four.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/icons8-star-48.png"))); // NOI18N
+        four.setText("jLabel39");
+
+        five.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/icons8-star-48.png"))); // NOI18N
+        five.setText("jLabel39");
+
+        jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel44.setText("jLabel44");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(one, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(two, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(three, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(four, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(five, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jProgressBar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jProgressBar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jProgressBar5, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(115, 115, 115))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jProgressBar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(110, 110, 110))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(one)
+                            .addComponent(two)
+                            .addComponent(three)
+                            .addComponent(four)
+                            .addComponent(five))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
+        overviewtab.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 870, 430));
 
         overview.setViewportView(overviewtab);
 
@@ -2007,6 +2275,8 @@ public boolean infoValid() {
     private javax.swing.JTextField email1;
     private try__.TextField email2;
     private try__.TextField email3;
+    private javax.swing.JLabel five;
+    private javax.swing.JLabel four;
     private javax.swing.JPanel grph;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -2032,11 +2302,13 @@ public boolean infoValid() {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -2053,7 +2325,12 @@ public boolean infoValid() {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2062,7 +2339,13 @@ public boolean infoValid() {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JProgressBar jProgressBar3;
+    private javax.swing.JProgressBar jProgressBar4;
+    private javax.swing.JProgressBar jProgressBar5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
@@ -2086,6 +2369,7 @@ public boolean infoValid() {
     private try__.TextField name2;
     private try__.TextField name3;
     private try__.BadgeButton noti;
+    private javax.swing.JLabel one;
     private javax.swing.JScrollPane overview;
     private javax.swing.JPanel overviewtab;
     private careerpathx.PasswordField pass;
@@ -2095,6 +2379,8 @@ public boolean infoValid() {
     private javax.swing.JPanel rec_infotab;
     private try__.TextAreaScroll textAreaScroll1;
     private try__.TextAreaScroll textAreaScroll2;
+    private javax.swing.JLabel three;
+    private javax.swing.JLabel two;
     private try__.TextField uid;
     private try__.TextField uid1;
     // End of variables declaration//GEN-END:variables

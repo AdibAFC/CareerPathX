@@ -99,6 +99,7 @@ public class Notification extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

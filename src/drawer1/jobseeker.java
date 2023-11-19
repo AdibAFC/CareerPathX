@@ -9,6 +9,7 @@ import dao.ImageIconCellRenderer;
 import dao.jobdao;
 import dao.jseekerdao;
 import details.job_info;
+import drawer.Review;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -170,6 +171,7 @@ public class jobseeker extends javax.swing.JFrame {
         jdate = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
         badgeButton1 = new try__.BadgeButton();
+        materialButton2 = new necesario.MaterialButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Find_Your_Job = new javax.swing.JPanel();
         display_jobs2 = new drawer1.display_jobs();
@@ -263,6 +265,11 @@ public class jobseeker extends javax.swing.JFrame {
         userMail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         userMail.setForeground(new java.awt.Color(255, 255, 255));
         userMail.setText("jLabel3");
+        userMail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userMailMouseClicked(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/icons8-dashboard-40.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -291,6 +298,16 @@ public class jobseeker extends javax.swing.JFrame {
             }
         });
 
+        materialButton2.setBackground(new java.awt.Color(39, 24, 126));
+        materialButton2.setForeground(new java.awt.Color(255, 255, 255));
+        materialButton2.setText("Review");
+        materialButton2.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        materialButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materialButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -298,16 +315,21 @@ public class jobseeker extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 705, Short.MAX_VALUE)
+                .addGap(90, 90, 90)
                 .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
+                .addComponent(materialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(193, 193, 193)
                 .addComponent(badgeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(userMail, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(351, 351, 351)
+                        .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(userMail, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
@@ -316,8 +338,8 @@ public class jobseeker extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(userMail, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(badgeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(badgeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(materialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -325,7 +347,9 @@ public class jobseeker extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(385, 385, 385))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userMail, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(335, 335, 335))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1354,6 +1378,18 @@ public class jobseeker extends javax.swing.JFrame {
             //System.out.println("User click cancel");
         }
     }//GEN-LAST:event_materialButton1ActionPerformed
+
+    private void userMailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMailMouseClicked
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(3);
+    }//GEN-LAST:event_userMailMouseClicked
+
+    private void materialButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton2ActionPerformed
+        // TODO add your handling code here:
+        Review x=new Review();
+        x.getmail(userMail.getText());
+        x.setVisible(true);
+    }//GEN-LAST:event_materialButton2ActionPerformed
     
 
 
@@ -1472,6 +1508,7 @@ public class jobseeker extends javax.swing.JFrame {
     private javax.swing.JLabel jdate;
     private javax.swing.JLabel jtime;
     private necesario.MaterialButton materialButton1;
+    private necesario.MaterialButton materialButton2;
     public careerpathx.PasswordField password;
     public try__.TextField phoneNumber;
     public javax.swing.JLabel profilePictureLabel;
