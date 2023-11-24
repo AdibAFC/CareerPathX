@@ -11,11 +11,15 @@ import dao.jobdao;
 import details.job_info;
 import drawer.Review;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -76,6 +80,20 @@ public class Recruiter extends javax.swing.JFrame {
         jButton4.setEnabled(false);
         no.setEditable(false);
         rid.setEditable(false);
+        close.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent me) {
+                //close.setBackground(Color.RED);
+                close.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                
+            }
+        });
+        close.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+            }
+        });
         Font itemFont = new Font("Roboto Medium", Font.PLAIN, 18);
         DrawerItem childItem1 = new DrawerItem("Job Posting");
         DrawerItem childItem2 = new DrawerItem("Applicants");
@@ -117,16 +135,16 @@ public class Recruiter extends javax.swing.JFrame {
                 .header(new DrawerItem("").icon(new ImageIcon(getClass().getResource("/Asset/java_dev.png"))).build())
                 .space(5)
                 .itemHeight(50)
-                .separator(2, new Color(175, 23, 25))
+                .separator(2, new Color(0, 0, 102))
                 .background(new Color(0, 0, 0))
                 .addChild(childItem1.icon(new ImageIcon(getClass().getResource("/Asset/icons8-job-48.png"))).build())
-                .separator(2, new Color(175, 23, 25))
+                .separator(2, new Color(0, 0, 102))
                 .background(new Color(0, 0, 0))
                 .addChild(childItem2.icon(new ImageIcon(getClass().getResource("/Asset/cv.png"))).build())
-                .separator(2, new Color(175, 23, 25))
+                .separator(2, new Color(0, 0, 102))
                 .background(new Color(0, 0, 0))
                 .addChild(childItem3.icon(new ImageIcon(getClass().getResource("/Asset/icons8-new-job-48.png"))).build())
-                .separator(2, new Color(175, 23, 25))
+                .separator(2, new Color(0, 0, 102))
                 .addFooter(logout.icon(new ImageIcon(getClass().getResource("/Asset/icons8-logout.gif"))).build())
                 .addFooter(new DrawerItem("").build())
                 .build();
@@ -180,8 +198,9 @@ public class Recruiter extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jtime = new javax.swing.JLabel();
         jdate = new javax.swing.JLabel();
-        rec = new javax.swing.JLabel();
         materialButton3 = new necesario.MaterialButton();
+        close = new javax.swing.JLabel();
+        rec = new necesario.MaterialButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         job_posting = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
@@ -279,6 +298,7 @@ public class Recruiter extends javax.swing.JFrame {
         jLabel66 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(39, 24, 126));
@@ -296,11 +316,7 @@ public class Recruiter extends javax.swing.JFrame {
         jdate.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jdate.setForeground(new java.awt.Color(250, 250, 250));
 
-        rec.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rec.setForeground(new java.awt.Color(255, 255, 255));
-        rec.setText("jLabel1");
-
-        materialButton3.setBackground(new java.awt.Color(39, 24, 126));
+        materialButton3.setBackground(new java.awt.Color(57, 44, 129));
         materialButton3.setForeground(new java.awt.Color(255, 255, 255));
         materialButton3.setText("Review");
         materialButton3.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
@@ -309,6 +325,17 @@ public class Recruiter extends javax.swing.JFrame {
                 materialButton3ActionPerformed(evt);
             }
         });
+
+        close.setBackground(new java.awt.Color(255, 255, 255));
+        close.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        close.setForeground(new java.awt.Color(255, 255, 255));
+        close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        close.setText("X");
+
+        rec.setBackground(new java.awt.Color(57, 44, 129));
+        rec.setForeground(new java.awt.Color(255, 255, 255));
+        rec.setText("materialButton1");
+        rec.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -323,36 +350,38 @@ public class Recruiter extends javax.swing.JFrame {
                         .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(368, 368, 368)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 735, Short.MAX_VALUE)
                         .addComponent(materialButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(649, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rec, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rec, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(172, 172, 172))))
+                        .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(rec, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(materialButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(materialButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, -1));
@@ -503,7 +532,7 @@ public class Recruiter extends javax.swing.JFrame {
         });
         jPanel5.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 280, 30));
 
-        jLabel22.setBackground(new java.awt.Color(215, 243, 243));
+        jLabel22.setBackground(new java.awt.Color(153, 153, 255));
         jLabel22.setOpaque(true);
         jPanel5.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 900));
 
@@ -1578,6 +1607,7 @@ public class Recruiter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Applicants;
+    private javax.swing.JLabel close;
     public try__.TextField com;
     public drawer2.display_applicants display_applicants2;
     private com.toedter.calendar.JDateChooser dl;
@@ -1667,14 +1697,13 @@ public class Recruiter extends javax.swing.JFrame {
     private javax.swing.JLabel jtime;
     private try__.TextField jtitle;
     private try__.TextField loc;
-    private necesario.MaterialButton materialButton2;
     private necesario.MaterialButton materialButton3;
     private javax.swing.JTextField no;
     private javax.swing.JScrollPane offers;
     private javax.swing.JLabel poster;
     private try__.TextArea qual;
     private rojerusan.RSButtonHover rSButtonHover1;
-    private javax.swing.JLabel rec;
+    public necesario.MaterialButton rec;
     public try__.TextField rid;
     private try__.Combobox stat;
     private try__.TextAreaScroll textAreaScroll2;

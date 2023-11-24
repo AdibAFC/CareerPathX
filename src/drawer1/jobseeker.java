@@ -123,19 +123,19 @@ public class jobseeker extends javax.swing.JFrame {
                 .header(new DrawerItem("").icon(new ImageIcon(getClass().getResource("/Asset/java_dev.png"))).build())
                 .space(5)
                 .itemHeight(50)
-                .separator(2, new Color(175, 23, 25))
+                .separator(2, new Color(0, 0, 102))
                 .background(new Color(0, 0, 0))
                 .addChild(childItem1.icon(new ImageIcon(getClass().getResource("/Asset/icons8-find-jobs-48.png"))).build())
-                .separator(2, new Color(175, 23, 25))
+                .separator(2, new Color(0, 0, 102))
                 .background(new Color(0, 0, 0))
                 .addChild(childItem2.icon(new ImageIcon(getClass().getResource("/Asset/icons8-company-48.png"))).build())
-                .separator(2, new Color(175, 23, 25))
+                .separator(2, new Color(0, 0, 102))
                 .background(new Color(0, 0, 0))
                 .addChild(childItem3.icon(new ImageIcon(getClass().getResource("/Asset/icons8-services-48.png"))).build())
-                .separator(2, new Color(175, 23, 25))
+                .separator(2, new Color(0, 0, 102))
                 .background(new Color(0, 0, 0))
                 .addChild(childItem4.icon(new ImageIcon(getClass().getResource("/Asset/icons8-test-account-48.png"))).build())
-                .separator(2, new Color(175, 23, 25))
+                .separator(2, new Color(0, 0, 102))
                 .addFooter(logout.icon(new ImageIcon(getClass().getResource("/Asset/icons8-logout.gif"))).build())
                 .addFooter(new DrawerItem("").build())
                 .build();
@@ -165,13 +165,13 @@ public class jobseeker extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        userMail = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jtime = new javax.swing.JLabel();
         jdate = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
         badgeButton1 = new try__.BadgeButton();
         materialButton2 = new necesario.MaterialButton();
+        userMail = new necesario.MaterialButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Find_Your_Job = new javax.swing.JPanel();
         display_jobs2 = new drawer1.display_jobs();
@@ -181,6 +181,10 @@ public class jobseeker extends javax.swing.JFrame {
         jLabel93 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         roundedPanel1 = new try__.RoundedPanel();
+        rSLabelImage1 = new rojerusan.RSLabelImage();
+        rSLabelImage2 = new rojerusan.RSLabelImage();
+        rSLabelImage3 = new rojerusan.RSLabelImage();
+        rSLabelImage4 = new rojerusan.RSLabelImage();
         display_companies1 = new drawer1.display_companies();
         jPanel11 = new javax.swing.JPanel();
         jLabel65 = new javax.swing.JLabel();
@@ -262,15 +266,6 @@ public class jobseeker extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(39, 24, 126));
 
-        userMail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        userMail.setForeground(new java.awt.Color(255, 255, 255));
-        userMail.setText("jLabel3");
-        userMail.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userMailMouseClicked(evt);
-            }
-        });
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/icons8-dashboard-40.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -298,13 +293,23 @@ public class jobseeker extends javax.swing.JFrame {
             }
         });
 
-        materialButton2.setBackground(new java.awt.Color(39, 24, 126));
+        materialButton2.setBackground(new java.awt.Color(57, 44, 129));
         materialButton2.setForeground(new java.awt.Color(255, 255, 255));
         materialButton2.setText("Review");
         materialButton2.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         materialButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 materialButton2ActionPerformed(evt);
+            }
+        });
+
+        userMail.setBackground(new java.awt.Color(57, 44, 129));
+        userMail.setForeground(new java.awt.Color(255, 255, 255));
+        userMail.setText("materialButton3");
+        userMail.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        userMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userMailActionPerformed(evt);
             }
         });
 
@@ -319,41 +324,37 @@ public class jobseeker extends javax.swing.JFrame {
                 .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
-                .addComponent(materialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(193, 193, 193)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 602, Short.MAX_VALUE)
                 .addComponent(badgeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(351, 351, 351)
-                        .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(userMail, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(materialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userMail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(badgeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(materialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(userMail, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(335, 335, 335))
+                .addGap(385, 385, 385))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(materialButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(userMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(badgeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 100));
@@ -393,15 +394,56 @@ public class jobseeker extends javax.swing.JFrame {
 
         roundedPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
+        rSLabelImage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rSLabelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/aci.png"))); // NOI18N
+        rSLabelImage1.setText("");
+        rSLabelImage1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        rSLabelImage1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        rSLabelImage2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/akij.png"))); // NOI18N
+        rSLabelImage2.setText("");
+        rSLabelImage2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        rSLabelImage2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        rSLabelImage3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rSLabelImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/bashundhara.png"))); // NOI18N
+        rSLabelImage3.setText("");
+        rSLabelImage3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        rSLabelImage3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        rSLabelImage4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rSLabelImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/walton.png"))); // NOI18N
+        rSLabelImage4.setText("");
+        rSLabelImage4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        rSLabelImage4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
         javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
         roundedPanel1Layout.setHorizontalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1169, Short.MAX_VALUE)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134)
+                .addComponent(rSLabelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146)
+                .addComponent(rSLabelImage3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addComponent(rSLabelImage4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(157, 157, 157))
         );
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rSLabelImage4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(rSLabelImage3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rSLabelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jPanel11.setBackground(new java.awt.Color(0, 0, 51));
@@ -1379,17 +1421,17 @@ public class jobseeker extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_materialButton1ActionPerformed
 
-    private void userMailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMailMouseClicked
-        // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(3);
-    }//GEN-LAST:event_userMailMouseClicked
-
     private void materialButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton2ActionPerformed
         // TODO add your handling code here:
         Review x=new Review();
         x.getmail(userMail.getText());
         x.setVisible(true);
     }//GEN-LAST:event_materialButton2ActionPerformed
+
+    private void userMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userMailActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(3);
+    }//GEN-LAST:event_userMailActionPerformed
     
 
 
@@ -1513,6 +1555,10 @@ public class jobseeker extends javax.swing.JFrame {
     public try__.TextField phoneNumber;
     public javax.swing.JLabel profilePictureLabel;
     private rojerusan.RSButtonHover rSButtonHover1;
+    private rojerusan.RSLabelImage rSLabelImage1;
+    private rojerusan.RSLabelImage rSLabelImage2;
+    private rojerusan.RSLabelImage rSLabelImage3;
+    private rojerusan.RSLabelImage rSLabelImage4;
     private try__.RoundedPanel roundedPanel1;
     private drawer1.services services1;
     private try__.TextAreaScroll textAreaScroll1;
@@ -1520,6 +1566,6 @@ public class jobseeker extends javax.swing.JFrame {
     public com.toedter.calendar.JDateChooser userDOB;
     public try__.Combobox userGender;
     public try__.TextField userId;
-    public javax.swing.JLabel userMail;
+    public necesario.MaterialButton userMail;
     // End of variables declaration//GEN-END:variables
 }

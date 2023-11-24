@@ -107,10 +107,10 @@ public class Homapage extends javax.swing.JFrame {
                 .itemHeight(50)
                 .separator(2, new Color(0, 0, 102))
                 .background(new Color(0,0,0))
-                .addChild(childItem1.build())
+                .addChild(childItem1.icon(new ImageIcon(getClass().getResource("/Asset/icons8-applicantsJ-50.png"))).build())
                 .separator(2, new Color(0, 0, 102))
                 .background(new Color(0,0,0))
-                .addChild(childItem2.build())
+                .addChild(childItem2.icon(new ImageIcon(getClass().getResource("/Asset/icons8-applicantsR-50.png"))).build())
                 .separator(2, new Color(0, 0, 102))
                 .background(new Color(0,0,0))
                 .build();

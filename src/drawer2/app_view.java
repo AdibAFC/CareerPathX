@@ -35,21 +35,20 @@ public class app_view extends javax.swing.JPanel {
         String formattedDate = dateFormat.format(timestamp);
         ada.setText(formattedDate);
         if (ji.cv != null) {
-    // Create an ImageIcon from ji.cv
-    ImageIcon imageIcon = new ImageIcon(ji.cv);
+            // Create an ImageIcon from ji.cv
+            ImageIcon imageIcon = new ImageIcon(ji.cv);
 
-    // Get the dimensions of x.cv label
-    int labelWidth = x.cv.getWidth();
-    int labelHeight = x.cv.getHeight();
+            // Get the dimensions of x.cv label
+            int labelWidth = x.cv.getWidth();
+            int labelHeight = x.cv.getHeight();
 
-    // Resize the ImageIcon to match the label size
-    Image image = imageIcon.getImage().getScaledInstance(labelWidth, labelHeight, Image.SCALE_SMOOTH);
-    ImageIcon resizedIcon = new ImageIcon(image);
+            // Resize the ImageIcon to match the label size
+            Image image = imageIcon.getImage().getScaledInstance(labelWidth, labelHeight, Image.SCALE_SMOOTH);
+            ImageIcon resizedIcon = new ImageIcon(image);
 
-    // Set the resized ImageIcon to the label
-    x.cv.setIcon(resizedIcon);
-}
- else {
+            // Set the resized ImageIcon to the label
+            x.cv.setIcon(resizedIcon);
+        } else {
             x.cv.setIcon(null);
         }
     }
@@ -147,7 +146,7 @@ public class app_view extends javax.swing.JPanel {
 
     }//GEN-LAST:event_materialButton1ActionPerformed
     public static void getrmail(String x) {
-        mail=x;
+        mail = x;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

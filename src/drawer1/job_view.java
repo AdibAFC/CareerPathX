@@ -161,7 +161,6 @@ public class job_view extends javax.swing.JPanel {
     }
     private void applyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyActionPerformed
         // TODO add your handling code here:
-
         try {
             ps = con.prepareStatement("SELECT rid FROM jobs WHERE company=? AND job_title=? AND location=? AND job_description=? AND qualification=? AND deadline=? AND status='ON' AND picture=?");
             ps.setString(1, ji.com);
@@ -170,7 +169,17 @@ public class job_view extends javax.swing.JPanel {
             ps.setString(4, ji.jobd);
             ps.setString(5, ji.qual);
             ps.setString(6, ji.Dl);
-            ps.setBytes(7, ji.pp);
+
+            // Check if ji.pp is not null before calling setBytes
+            if (ji.pp != null) {
+                ps.setBytes(7, ji.pp);
+            } else {
+                // Handle the case where ji.pp is null, depending on your requirements.
+                // For example, you could set a default value or show an error message.
+                // Here, I'm setting it to an empty byte array, but you might need to adjust this based on your application logic.
+                ps.setBytes(7, new byte[0]);
+            }
+
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 r_id = rs.getInt("rid");
@@ -181,26 +190,41 @@ public class job_view extends javax.swing.JPanel {
         }
         Timestamp ada = new Timestamp(new Date().getTime());
         if (r_id == 0) {
-            JOptionPane.showMessageDialog(this, name + ", We're extremely sorry,this job is not available! ", "Invalid", 2);
+            JOptionPane.showMessageDialog(this, name + ", We're extremely sorry, this job is not available! ", "Invalid", 2);
+        } else if (applied(r_id, ji.jobt, name)) {
+            JOptionPane.showMessageDialog(this, name + ", you have already applied for this job!");
         } else {
-            JOptionPane.showMessageDialog(this, name + ", your CV has been sent to Admin,you'll be informed soon");
+            JOptionPane.showMessageDialog(this, name + ", your CV has been sent to Admin, you'll be informed soon");
 
-            byte[] cvData = getcv(name);
-            InputStream imgStream = new ByteArrayInputStream(cvData);
-            insert_in_adminaoo(r_id, ji.jobt, name, ada, imgStream);
+            // Ensure that ji.pp is not null before creating the ByteArrayInputStream
+            if (ji.pp != null) {
+                byte[] cvData = getcv(name);
+                try (InputStream imgStream = new ByteArrayInputStream(cvData)) {
+                    insert_in_adminaoo(r_id, ji.jobt, name, ada, imgStream);
+                } catch (IOException ex) {
+                    // Handle the exception appropriately, e.g., show an error message to the user.
+                    ex.printStackTrace(); // This is a simple way to log the exception for debugging.
+                }
+            } else {
+                // Handle the case where ji.pp is null, depending on your requirements.
+                // For example, you could set a default value or show an error message.
+                // Here, I'm setting it to an empty byte array, but you might need to adjust this based on your application logic.
+                JOptionPane.showMessageDialog(this, "Error: CV data (ji.pp) is null");
+            }
         }
+
 
     }//GEN-LAST:event_applyActionPerformed
     public byte[] getcv(String name) {
-        try {
-            ps = con.prepareStatement("select CV from jseeker where semail = ?");
-            ps.setString(1, name);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getBytes("CV");
+        try (PreparedStatement preparedStatement = con.prepareStatement("SELECT CV FROM jseeker WHERE semail = ?")) {
+            preparedStatement.setString(1, name);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBytes("CV");
+                }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(jobseeker.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(job_view.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -227,8 +251,24 @@ public class job_view extends javax.swing.JPanel {
                 //JOptionPane.showMessageDialog(null, "Information Added", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(userdao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(job_view.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public boolean applied(int rid, String jt, String aname) {
+        try {
+            ps = con.prepareStatement("SELECT * FROM job_applications WHERE rid=? AND job_title=? AND applicant_name=?");
+            ps.setInt(1, rid);
+            ps.setString(2, jt);
+            ps.setString(3, aname);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(job_view.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

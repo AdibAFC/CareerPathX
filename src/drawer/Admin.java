@@ -721,7 +721,7 @@ public class Admin extends javax.swing.JFrame {
         close.setForeground(new java.awt.Color(255, 255, 255));
         close.setText("X");
 
-        noti.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        noti.setBorder(null);
         noti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/icons8-notification-30.png"))); // NOI18N
         noti.setLabel("9");
         noti.addActionListener(new java.awt.event.ActionListener() {
